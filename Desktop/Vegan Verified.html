@@ -1,0 +1,906 @@
+<!Doctype html>
+<html>
+<head>
+<meta name="description" content="[this is very close to wor dot run functions for some reason add ughj bin description]" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
+        <link rel="stylesheet" href="themes/g.min.css" />
+        <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <link href="http://code.google.com//apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css">  
+         <script src="https://maps.googleapis.com/maps/api/js?libraries=places&v=3.exp&sensor=true"></script>
+
+  
+    <script>
+      
+    var shcrt = [""];
+      
+    var breading=["2 Tablespoons soy margarine","1/3 cup finely chopped green onion","3/4 cup soy milk or rice milk", " 2 cups whole wheat bread flour"," 1 teaspoon sea salt", "1 Tablespoon white sugar"]; 
+      
+      var lemonccing=["2 1/2 teaspoons of egg substitute", "3 tablespoons water", "1 1/2 cups all purpose flour", "3/4 teaspoon baking powder", "3/4 teaspoon baking soda", "1/2 teaspoon salt", "6 tablespoons vegan butter","3/4 cup sugar","2 tablespoons lemon zest","1 teaspoon vanilla extract", "3/4 cup vegan sour cream"]; 
+      
+      var biscuit=["2 cups of unbleached all-purpose flour","1 tablespoon baking powder","3/4 teaspoon salt", "1/2 cup Earth Balance whipped spread","1 1/2 teaspoons lemon juice","1 1/2 teaspoons lemon juice", "chives (optional)"];
+
+      var sms=["1/2 cup cooked pinto beans, rinsed and drained","1/2 cup vegetable broth","1/4 cup pure maple syrup","1 tablespoon olive oil","2 tablespoons soy sauce","1 1/2 teaspoons liquid smoke","2 cloves garlic, grated","1 1/4 cups vital wheat gluten","2 tablespoons nutritional yeast","2 tablespoons chickpea flour","1 teaspoon dried thyme","1/2 teaspoon fennel seed, crushed","1/2 teaspoon ground ginger","1/4 teaspoon ground cinnamon","1/8 teaspoon ground cloves"];
+
+      var creamgrits=["1 cup polenta corn grits (such as Bob's Red Mill brand)","4 cups vegetable broth","1/4 teaspoon salt (to taste, depending how salty your broth is)","1 tablespoon olive oil","4 cloves garlic, minced"];
+     
+      var pfrenchtoast=["1 cup pureed pumpkin (from a can is just fine)", "1 1/2 cups almond milk (or your favorite non-dairy milk)","2 tablespoons cornstarch","2 teaspoons cinnamon","1 1/2 teaspoons ground ginger","1/2 teaspoon ground cloves","1 teaspoon pure vanilla extract","1 stale Baguette, sliced diagonally in 1 inch pieces (see tip), or 8 pieces thick sliced bread","Cooking oil for the pan"];
+      
+      var tofuomelets=["2 cloves garlic (optional)","1 14 oz package silken tofu, lightly drained (not the vacuum packed kind), or soft tofu (see tip)","2 tablespoons nutritional yeast","2 tablespoons olive oil","1/2 teaspoon turmeric","1 teaspoon fine black salt, plus extra for sprinkling","1/2 cup chickpea flour","1 tablespoon arrowroot or cornstarch"];             
+
+      var Ricotta =["1 box brown rice Grand/Jumbo shells (Recommend Tinkyada Brand)","3 leeks, cleaned and chopped","1/2 tablespoon olive oil","Sea salt","1 block (12 ounces) extra firm tofu, drained, pressed for at least 3 hours, and crumbled","2 tablespoons lemon juice","1 teaspoon sea salt","5 tablespoons nondairy cream cheese or very smooth cashew cream"];
+
+      var Ratatouille=["2 medium sized tomatoes, greens removed","1 bulb garlic, tip cut off to expose cloves on top","1 Japanese eggplant","1 yellow zucchini (unpeeled)","1 green zucchini (unpeeled)","1 long red pepper, de-seeded","1 very large carrot","2 heaping tablespoons tomato paste","1/2 teaspoon sea salt","2 tablespoon olive oil + additional for drizzling","2 tablespoons leaves fresh thyme","1 tablespoon leaves oregano","Fresh cracked black pepper","Dash smoked salt"];
+
+
+       function makehtml(lst, loc){
+
+
+      //console.log(lst);
+      ///console.log(loc);
+
+        for (var i=0; i<lst.length; i++){
+          //$(loc).append("<li><div data-role='button'>"+lst[i]+"</div>");
+
+          $(loc).append('<li><a href="http://vegan.com/wp-content/uploads/2012/03/ButterSM.jpg"><h3>'+lst[i]+'</h3><p class="ui-li-aside"></p></a><a href="#question" class="delete">Delete</a></li>');
+        }
+        //$(loc).trigger('create');
+        //$(loc).listview('refresh');
+    }
+
+    //for ingredient on recipe page
+    function makehtml2(lst, loc){
+
+      console.log(lst);
+      console.log(loc);
+
+        for (var i=0; i<lst.length; i++){
+          $(loc).append("<li>"+lst[i]+"</li>");
+        }
+        // $(loc).trigger('create'}
+       }
+    var init = function(){
+      console.log("init ok");
+      makehtml2(breading, "#breadlisting");
+      makehtml2(lemonccing,"#listforlemon"); 
+      makehtml2(biscuit, "#biscuitlisting");
+      makehtml2(creamgrits, "#gritslisting");
+      makehtml2(sms, "#smslisting");
+      makehtml2(pfrenchtoast, "#pftlisting");
+      makehtml2(tofuomelets, "#tolisting");
+      makehtml2(Ricotta, "#shellslisting");
+      makehtml2(Ratatouille, "#ratlisting");
+    }
+
+function addtocart(lst){
+      for (var i=0; i<lst.length; i++){
+        shcrt.push(lst[i]);
+      }
+   // $('#shoppingcartlist').listview('refresh');
+     //  $("#shoppingcartlist").trigger('create');
+        makehtml(shcrt,"#shoppingcartlist");
+
+     // $(loc).listview('refresh');
+     // $(loc).trigger('create');
+   }
+
+   var scan={
+  "039978003300":{"Status":"Yes, this is vegan!","Picture":"http://3.bp.blogspot.com/-EJW2UOEWzEU/UWrgKWPb2ZI/AAAAAAAAAVU/LZ1eEqcBK50/s320/gf.jpg"},
+  "4400003197":{"Status":"No, this is not vegan.","Picture":"http://willrunforcake.files.wordpress.com/2009/06/oreos_1.jpg"},
+  "042272000814":{"Status":"Yes, this is vegan!","Picture":"http://www.amyskitchen.com/images/uploads/products/large/000081.jpg"}
+} 
+
+function callscan ()
+{
+  var whatsbeentypedin = $('#search').val();
+  console.log(whatsbeentypedin);
+  var barcodeItem = scan[whatsbeentypedin] || null;
+  if(barcodeItem != null){
+     $('#answer').html(barcodeItem["Status"]);
+    console.log(barcodeItem["Picture"]);
+  }else{
+    $('#answer').html(barcodeItem["Status"]);
+    console.log("not vegan");
+  }
+}
+
+ $(document).on("veganlocal", "#map_page", function() {
+        initialize();
+      });       
+    var map;
+    var service;
+    var infowindow;
+
+    function initialize() {
+      var sanjose = new google.maps.LatLng(37.3041, -121.8727);
+      var mapOptions = {
+        center: sanjose,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+      infowindow = new google.maps.InfoWindow();
+      service = new google.maps.places.PlacesService(map);
+      performSearch(sanjose);
+    }
+
+
+    function performSearch(loc) {
+      var request = {
+        location: loc,
+        radius: 100000,
+        keyword: 'vegan'
+      };
+
+      service.nearbySearch(request, callback);
+    }
+
+    function callback(results, status) {
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          createMarker(results[i]);
+        }
+      }
+    }
+
+    function createMarker(place) {
+      var placeLoc = place.geometry.location;
+      var marker = new google.maps.Marker({
+        map: map,
+        position: placeLoc
+      });
+      google.maps.event.addListener(marker, 'click', function() {
+        infowindow.setContent(String(place.rating)+String(place.name));
+        infowindow.open(map, this);
+      });
+
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <style>
+            #map-canvas {
+                margin: 0;
+                padding: 0;
+                width: 100%; 
+                           }
+
+            #footer
+            {
+              position:absolute;
+              width:100%;
+              bottom:0;
+              height:50px;
+            }
+            #barcode{
+              background-image: url("http://i.imgur.com/hdt2CJ4.png");
+            }
+            #homescreen{
+              background-image: url("http://i.imgur.com/hdt2CJ4.png");
+            }
+            #Recipe{
+              background-image: url("http://i.imgur.com/hdt2CJ4.png");
+            }
+          
+    </style>
+    </head>
+
+<body onload="init();">
+
+  <!--HOMESCREEN LOCATED HERE-->
+
+<div data-role="page" id="homescreen">
+        <div data-role="header">
+         <h2>Vegan Verified</h2>      
+        </div> <!--Header-->
+
+        <div data-role ="content">
+
+                <ul data-role="listview" data-inset="true">
+          <li><a href="#barcode">
+              <img src="http://icons.iconarchive.com/icons/chrisbanks2/cold-fusion-hd/128/barcode-scanner-icon.png">
+              <h2>Barcode Search</h2>
+              <p>Type in the product barcode and find out if it is vegan.</p></a>
+          </li>
+          <li><a href="#veganlocal">
+              <img src="http://chriscarey.com/wordpress/wp-content/uploads/2012/07/google_maps_icon.png">
+              <h2>Vegan Local</h2>
+              <p>Find local vegan restaurants near you.</p></a>
+          </li>
+          <li><a href="#Recipe">
+              <img src="http://nspehler.com/wp-content/uploads/2012/06/TheCookBook@500.png">
+              <h2>Recipe Collection</h2>
+              <p>Browse through vegan reciepes.</p></a>
+          </li>
+              </ul>
+         
+        </div><!--content-->
+
+         <div data-role ="footer" id="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#barcode" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer-->
+ </div><!-- /end of page -->
+
+ <!-- BARCODE SECTION HERE-->
+  <div data-role="page" id="barcode">
+        <div data-role="header">
+         <h2>Barcode Search</h2>      
+        </div> <!--Header-->
+
+        <div data-role ="content">
+          <form action="form.php" method="post">
+              <b><label for="search">Enter the barcode below:</label></b>
+        <input type="search" name="password" id="search" value="">
+        <a href="#popupBasic" data-role="button" data-rel = "popup" data-theme="b" onclick="callscan();">Submit</a>
+
+      </form> 
+
+      <div id = "answer"></div>
+         
+        </div><!--content-->
+
+         <div data-role ="footer" id="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#barcode" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer-->
+ </div><!-- /end of page -->
+
+ <!-- Vegan local is right here-->
+ <div data-role="page" id="veganlocal">
+  
+  <div id="map-canvas" style="height:400px;"></div>
+
+      <div data-role="header" data-position="fixed" data-theme="b">
+        <h1> Vegan Local </h1>
+          <a href="#Recipe" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+          <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
+                             
+       </div><!-- /header -->
+            
+                <div data-role="content">
+                
+                  
+                 
+            </div> <!--Content-->
+               <div data-role ="footer" id="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#barcode" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer--> 
+              
+    </div><!-- /end of page --> 
+
+<div data-role="page" id="Recipe">
+    <div data-role="header" >
+      <h2>Recipes</h2>
+    </div><!-- /header -->
+
+    <div data-role="content">
+       
+             <!-- Bread Button and List --> 
+            <a href="#pop1" data-rel="popup" data-role="button" data-inline="true" data-transition="slideup"  data-theme="e" id="popupMenu"><img src="http://2.bp.blogspot.com/-t_kwkoofpms/T9UtBSAz7qI/AAAAAAAAB4M/put6GEfirT0/s1600/vegan+bread.JPG" height="200" width="200" data-transition="flip" data-theme="e"><h1>Bread</h1></a>
+          
+            <!-- Breakfast button and list --> 
+            <a href="#pop3" data-rel="popup" data-role="button" data-inline="true" data-transition="slideup"  data-theme="e" id="popupMenu"><img src="http://1.bp.blogspot.com/_DB6paCPgjGU/TG0JlnBnJjI/AAAAAAAAAeg/KeBzl02sLMs/s1600/Vegan+Breakfast+025.jpg" height="200" width="200" data-transition="flip" data-theme="g"><br><h1>Breakfast</h1></a>
+    
+             <!--Dinner Button and List -->
+             <a href="#pop4" data-rel="popup" data-role="button" data-inline="true" data-transition="slideup" data-theme="e" id="popupMenu"><img src="http://www.veganhoneymoons.com/wp-content/uploads/2011/09/baliveggiedinner.jpg" height="200" width="200" data-transition="flip" data-theme="g"><br><h1>Dinner</h1></a>
+      
+       <!-- Dessert button and list-->
+          <a href="#pop2" data-rel="popup" data-role="button" data-inline="true" data-transition="slideup"  data-theme="e" id="popupMenu"><img src="http://0.tqn.com/d/vegetarian/1/0/P/C/-/-/cheesecake-large.jpg" height="200" width="200" data-transition="flip" data-theme="g"><br><h1>Desserts</h1></a>
+
+          <!-- The popup menu for the bread-->
+          <div data-role="popup" id="pop1" data-theme="a">
+                  <ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="d" >
+                      <li data-role="divider" data-theme="g">Choose an recipe</li>
+                      <li><a href="#breadrecipe1">Whole Wheat Herb Bread</a></li>
+                      <li><a href="#breadrecipe2">Lemon Coffee Cake</a></li>
+                    <li><a href="#breadrecipe3"> Biscuits </a></li>
+                  </ul>
+          </div>
+          <!-- The popup list for the desserts-->
+          <div data-role="popup" id="pop2" data-theme="a">
+                  <ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="b" >
+                      <li data-role="divider" data-theme="b">Choose an recipe</li>
+                      <li><a href="http://vegweb.com/recipes/whole-wheat-herb-bread">Desserts</a></li>
+                      <li><a href="#">Place Holder</a></li>
+                      <li><a href="#">Place Holder</a></li>
+                      <li><a href="#">Place Holder</a></li>
+                  </ul>
+          </div>
+          
+          <!-- The popup list for the breakfast-->
+          <div data-role="popup" id="pop3" data-theme="a">
+                  <ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="d" >
+                      <li data-role="divider" data-theme="a">Choose an recipe</li>
+                      <li><a href="#smokeymaplesausage">Smokey Maple Sausage</a></li>
+                      <li><a href="#grits">Grits</a></li>
+                      <li><a href="#pumpkinfrenchtoast">Pumpkin French Toast</a></li>
+                      <li><a href="#tofu">Tofu Omelets</a></li>
+                  </ul>
+          </div>
+          
+          <!-- The popup list for the dinner-->
+          <div data-role="popup" id="pop4" data-theme="a">
+                  <ul data-role="listview" data-inset="true" style="min-width:210px;" data-theme="d" >
+                      <li data-role="divider" data-theme="a">Choose an recipe</li>
+                      <li><a href="#shells">Ricotta Stuffed Shells</a></li>
+                      <li><a href="#rat">Rataouille</a></li>
+                      <li><a href="#">Spaghetti and Meatballs</a></li>
+                      <li><a href="#">Fettucine Alfredo</a></li>
+                  </ul>
+          </div>
+
+
+    </div> <!-- /content -->
+    
+       <div data-role ="footer" id="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#barcode" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer-->
+
+    </div><!-- /end of page -->
+
+<div data-role="page" id="breadrecipe1">
+            
+            <!-- Page that holds the recipe for the bread: 1-->
+           
+      <div data-role="header" data-position="fixed" data-theme="a">
+         <h1>Whole Wheat Herb Bread</h1>
+          <a href="#Recipe" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+          <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
+                             
+      </div><!-- /header -->
+            
+                <div data-role="content">
+                
+                  <img src = "http://adoreajarbakery.files.wordpress.com/2010/01/img_0569.jpg" width ="200" height="200" align=right > 
+                  
+                  <div data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="a" onclick="addtocart(breading);">Add items to cart </div>
+                  
+                  <a href="#ShoppingCart" data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="a">See your cart</a>
+
+                 <!-- this is to make the item list show on the reciepe page-->
+                <div>
+                    <ul id="breadlisting">
+                    </ul>
+                </div>
+   
+                  <h1> How you make it: </h1>
+                <p> I did all of the mixing and the first rising on the manual setting of my bread maker.  Yeast goes in first then the rest. Remove the dough onto a cookie sheet that has been sprinkled with 1/3 the flour. Knead and add more flour as required. You don't want it overly gooey or overly dry. Roll into an oblong loaf or use a round cookie cutter to make bagels (poke your finger through the middle for the hole).
+                  <br>
+                  <br>
+                  Cover with a damp towel for 45 minutes. Longer is ok too. Bake in 350 degree oven on the same cookie sheet for 23 minutes.
+                  <br>   
+                  <br>
+                  Preparation Time: 
+                  68 minutes
+                  <br>
+                  <br>
+                  Cooking Time: 
+                  Servings: 
+                  1
+            </p>
+                
+            </div> <!--Content-->
+               <div data-role ="footer" id="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#barcode" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer--> 
+                
+                  
+</div><!-- /end of page -->                  
+            
+  <!--THIS IS THE LEMON COFFEE CAKE PAGE-->
+
+     <div data-role="page" id="breadrecipe2">
+  
+      <div data-role="header" data-position="fixed" data-theme="b">
+         <h1>Lemon Coffee Cake </h1>
+          <a href="#Recipe" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+          <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
+                             
+       </div><!-- /header -->
+            
+                <div data-role="content">
+                
+                  <img src = "http://ovenmittsblog.com/wp-content/uploads/2011/11/mg_6337.jpg" width ="200" height="200" align=right > 
+                  
+                  <div data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b" onclick="addtocart(lemonccing);">Add items to cart </div>
+                  
+                  <a href="#ShoppingCart" data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b">See your cart</a>
+
+                 <!-- this is to make the item list show on the reciepe page-->
+                <div>
+                    <ul id="listforlemon">
+                    </ul>
+                </div>
+   
+                  <h1> How you make it: </h1>
+                <p> 1. Preheat oven to 350 degrees F and oil an 8 1/2 x 4 1/2 loaf pan. Combine egg replacer and water in a small bowl and set aside.
+                  
+                  <br>
+                  <br> 
+2. Combine flour, baking powder, baking soda, and salt in a medium bowl. Cream butter, sugar, and lemon zest in a mixer (I tried it by hand; it is doable but difficult. I think my arm is actually sore!) for about 2 minutes.
+                  <br>
+                  <br> 
+3. Add egg replacer mixture and vanilla and mix well. Add 1/2 the flour mixture to the wet ingredients. Mix well. Add the sour cream and mix again. Add the rest of the flour and make sure it is all incorporated very well.
+                  <br>  
+                  <br> 
+4. Scoop into the prepared loaf pan and level the top with a spoon. The batter should be fairly thick. Bake for 55 minutes, or until a toothpick inserted into the center comes out clean.
+                  
+
+            </p>
+                
+            </div> <!--Content-->
+
+        <div data-role ="footer" id="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#barcode" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer--> 
+              
+    </div><!-- /end of page --> 
+
+    <!--THIS IS THE BISCUITS PAGE-->
+
+<div data-role="page" id="breadrecipe3">
+            
+            <!-- Page that holds the recipe for the bread: 1-->
+           
+      <div data-role="header" data-position="fixed" data-theme="b">
+         <h1>Southern Style Biscuits</h1>
+          <a href="#Recipe" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+          <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
+                             
+      </div><!-- /header -->
+            
+                <div data-role="content">
+                
+                  <img src = "http://food.sndimg.com/img/recipes/31/54/37/large/picVY9Qdk.jpg" width ="200" height="200" align=right > 
+                  
+                  <div data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b" onclick="addtocart(biscuit);">Add items to cart </div>
+                  
+                  <a href="#ShoppingCart" data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b">See your cart</a>
+
+                 <!-- this is to make the item list show on the reciepe page-->
+                <div>
+                    <ul id="biscuitlisting">
+                    </ul>
+                </div>
+   
+                  <h1> How you make it: </h1>
+                <p> 
+ 1. Preheat oven to 375.
+                  <br> 
+                  <br> 
+2. Use your mixer, or use a large-ish mixing bowl. Add dry ingredients and mix together with a fork so ingredients are combined thoroughly.
+                  <br> 
+                  <br> 
+3. Then add the Earth Balance and cut into the dry mixture with two knives scissoring against another (or use mixer). The consistency should be lumpy/flaky and E.B. should be about pea-size, as it is important to keep it mealy/flaky for flakier biscuits.
+                  <br> 
+                  <br> 
+4. Next measure the soymilk and add the lemon juice to it, allowing it to sit for a few minutes (the lemon juice sours the soymilk giving it a buttermilk like taste).
+                  <br> 
+                  <br> 
+5. Add the soymilk mixture and mix thoroughly (until combined) but do not over mix (occasionally I have to add a few extra tblsp. of soy milk, if the dough isn't completely incorporated at bottom of mixer). The dough texture should be able to be handled and formed easily, without losing shape (a bit tacky is okay but not sticky). Flour a board and gently roll dough into a log, cut into 7-8 generous slices, place on sheet (with the cut sides on the side and the top on the top) and bake until golden (15 minutes approximately).
+            </p>
+                
+          </div> <!--Content-->
+<div data-role ="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer-->
+    
+    </div><!-- /end of page -->
+            
+ <!-- THIS IS THE GRITS PAGE-->
+
+      <div data-role="page" id="grits">
+  
+      <div data-role="header" data-position="fixed" data-theme="b">
+         <h1> Creamy Grits</h1>
+          <a href="#Recipe" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+          <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
+                             
+       </div><!-- /header -->
+            
+                <div data-role="content">
+                
+                  <img src = "http://nittygrits.files.wordpress.com/2011/08/p8200062.jpg" width ="200" height="200" align=right > 
+                  
+                  <div data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b" onclick="addtocart(creamgrits);">Add items to cart </div>
+                  
+                  <a href="#ShoppingCart" data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b">See your cart</a>
+
+                 <!-- this is to make the item list show on the reciepe page-->
+                <div>
+                    <ul id="gritslisting">
+                    </ul>
+                </div>
+   
+                  <h1> How you make it: </h1>
+                <p> 
+                  Bring vegetable broth and salt to a boil in a 2 quart pot. Lower heat to simmer. Add the polenta in a slow steady stream, stirring constantly with a whisk. Whisk for about 5 minutes, until polenta is thickened. Keeping heat low, cover and let cook for 20 more minutes or so, stirring occasionally.
+          <br>
+         <br>
+When polenta is almost done, preheat a small pan over medium-low heat. Saute the garlic in oil just until it begins to sizzle, being careful not to burn. Stir for 30 seconds, then transfer to the cooked polenta and mix well.
+
+
+            </p>
+                
+            </div> <!--Content-->
+               <div data-role ="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#barcode" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer--> 
+              
+    </div><!-- /end of page --> 
+
+<!-- SMS PAGE HERE-->
+<div data-role="page" id="smokeymaplesausage">
+            
+            
+           
+      <div data-role="header" data-position="fixed" data-theme="b">
+         <h1>Smokey Maple Sausage</h1>
+          <a href="#Recipe" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+          <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
+                             
+      </div><!-- /header -->
+            
+                <div data-role="content">
+                
+                  <img src = "http://farm4.static.flickr.com/3073/2305334545_b706a97391.jpg" width ="200" height="200" align=right > 
+                  
+                  <div data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b" onclick="addtocart(sms);">Add items to cart </div>
+                  
+                  <a href="#ShoppingCart" data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b">See your cart</a>
+
+                 <!-- this is to make the item list show on the reciepe page-->
+                <div>
+                    <ul id="smslisting">
+                    </ul>
+                </div>
+   
+                  <h1> How you make it: </h1>
+                <p> 
+Before mixing your ingredients, get your steaming apparatus ready, and bring water to a full boil. The rest of the recipe comes together very quickly.
+                  <br>
+                  <br>
+Have ready 4 sheets of tin foil. In a large bowl, mash the pinto beans until no whole ones are left. Throw all the other ingredients together in the order listed and mix with a fork. Divide dough into 4 even parts (an easy way to do this: split the dough in half and then into quarters). Place one part of dough into tin foil and mold into about a 5 inch log. Wrap dough in tin foil, like a tootsie roll. Don’t worry too much about shaping it, it will snap into shape while it’s steaming because this recipe is awesome.
+                  <br>
+                  <br>
+Place wrapped sausages in steamer and steam for 40 minutes. That’s it! You can unwrap and enjoy immediately or refrigerate until ready to use. They’re really great sliced up and lightly sauteed, or grilled.
+
+            </p>
+                
+            </div> <!--Content-->
+               <div data-role ="footer" id="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#barcode" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer--> 
+                                 
+</div><!-- /end of page --> 
+
+<div data-role="page" id="pumpkinfrenchtoast">
+  
+      <div data-role="header" data-position="fixed" data-theme="b">
+         <h1> Pumpkin French Toast</h1>
+          <a href="#Recipe" data-rel="back" data-icon="arrow-l" data-iconpos="notextBack" </a>
+          <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
+                             
+       </div><!-- /header -->
+            
+                <div data-role="content">
+                
+                  <img src = "http://food.sndimg.com/img/recipes/38/44/40/large/picCmX4Xx.jpg" width ="200" height="200" align=right > 
+                  
+                  <div data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b" onclick="addtocart(pfrenchtoast);">Add items to cart </div>
+                  
+                  <a href="#ShoppingCart" data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b">See your cart</a>
+
+                 <!-- this is to make the item list show on the reciepe page-->
+                <div>
+                    <ul id="pftlisting">
+                    </ul>
+                </div>
+   
+                  <h1> How you make it: </h1>
+                <p> 
+                  Mix together all ingredients (except for the bread, obvioulsy). Spread out baguette slices on a rimmed baking pan in a single layer. Pour on pumpkin mixture and flip to coat. Let sit for 20 minutes, then flip over and soak for 10 minutes more.
+                  <br>
+                  <br>
+Preaheat a large non-stick skillet over medium heat (I use cast iron). Spray with cooking oil, or drizzle a little into the pan, and cook about half of the soaked breads at a time for 5 to 7 minutes on one side and about 3 minutes on the other. They should be golden to medium brown and flecked with darker spots. Keep warm on a plate covered with tin foil while you cook the second batch.
+                  <br>
+                  <br>
+If not serving immediately, cover and place in a 200 degree oven for up to an hour. Serve with maple syrup and earth balance, of course.
+
+
+            </p>
+                
+            </div> <!--Content-->
+               <div data-role ="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#barcode" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer--> 
+              
+    </div><!-- /end of page --> 
+
+    <div data-role="page" id="tofu">
+  
+      <div data-role="header" data-position="fixed" data-theme="b">
+         <h1> Tofu Omelette </h1>
+          <a href="#Recipe" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+          <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
+                             
+       </div><!-- /header -->
+            
+                <div data-role="content">
+                
+                  <img src = "http://farm3.static.flickr.com/2437/3592607949_ba64c8a2b4.jpg" width ="200" height="200" align=right > 
+                  
+                  <div data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b" onclick="addtocart(tofuomelets);">Add items to cart </div>
+                  
+                  <a href="#ShoppingCart" data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b">See your cart</a>
+
+                 <!-- this is to make the item list show on the reciepe page-->
+                <div>
+                    <ul id="tolisting">
+                    </ul>
+                </div>
+   
+                  <h1> How you make it: </h1>
+                <p> 
+                  Chop up the garlic up in a food processor. Add the tofu, nutritional yeast, olive oil, turmeric and salt. Puree until smooth. Add the chickpea flour and cornstarch and puree again for about 10 seconds, until combined. Make sure to scrape down the sides so that everything is well incorporated.
+<br>
+                  <br>
+Preheat a large, heavy bottomed, non-stick skillet over medium-high heat. Well-seasoned cast iron works great, but if you’re not sure of the non-stickness of your cast iron, do a test (see tip above) or use a regular non-stick skillet. Lightly grease with either cooking spray or a very thin layer of oil. (The less oil the better for the nice brown speckles we’re going for.) Also,  make sure that you use a large skillet, as you need room to spread out the omelet and to get your spatula under there to flip. Don’t use an 8- inch omelet pan or anything like that. Here you’ll need at least 12 inches (tee hee).
+<br>
+                  <br>
+In 1/2 cup measurements, pour omelet batter into skillet. Use the back of a spoon or a rubber spatula to spread the batter out into about 6- inch circles. (It’s okay if it isn’t a perfect circle.) Be gentle when spreading it out, if there are any rips or holes, that is fine, just gently fill them in as you spread the batter. Let cook for about 3 to 5 minutes before flipping. The top of the omelet should dry and become a dull matte yellow when ready to flip. If you begin to flip it and it seems like it might fall apart, give it a little more time. When the omelet is ready to be flipped, the underside should be flecked with light to dark brown when it is ready to flip.  Flip omelet and cook for about a minute on the other side. Keep warm on a plate covered with tin foil as you make the remaining omelets.
+<br>
+                  <br>
+Stuff omelet with the fillings of your choice then fold over. Once the omelet has been filled, sprinkle with a little extra black salt, since some of its flavor disappears when cooked.
+<br>
+                  <br>
+Fillings options: It’s What’s Inside That Counts
+It’s hard for me to imagine produce that wouldn’t find its calling stuffed into an omelet. When it comes to omelet fillings, think fresh and you can’t go wrong. Look deep within yourself that morning and find your spirit vegetable. And if that doesn’t do it for you, hit up your farmer’s market and go with what’s in season. Each of these fillings makes enough for 4 four omelets. Mix and match them to your heart’s content and come up with scrumptious fillings of your own.
+<br>
+                  <br>
+Mushrooms And Spinach
+Preheat a large pan over medium heat. Sautée 4 cups sliced cremini mushrooms in 2 tablespoons olive oil. After about 5 minutes, when mushrooms are soft, add 2 cloves minced garlic and about 3 tablespoons fresh chopped thyme. Sautée about 3 minutes more, add fresh black pepper and a few dashes of salt to taste. Stuff into omelets and divide 2 cups of fresh, chopped spinach amongst them. The spinach will wilt in the omelet. Top with homemade cheezy sauce or shredded vegan cheese and fold.
+<br>
+                  <br>
+Grilled Marinated Asparagus
+Marinate 1 pound asparagus, ends trimmed, in a mixture of 1/4 cup balsamic vinegar, 1/4 cup olive oil, 2 smashed cloves of garlic, fresh black pepper and a generous pinch of salt. Let sit for at least an hour or overnight. Grill asparagus on a preheated hot grill or grill pan for about 8 minutes, flipping once. Divide amongst omelets, top with tahini sauce and fold.
+                  <br>
+                  <br>
+Roasted Tomatoes, Ricotta And Basil
+Preheat an oven to 300° F. Slice 2 pounds of plum tomatoes lengthwise. Toss with 2 tablespoons olive oil. Sprinkle with salt and fresh black pepper. Place tomatoes face down on a rimmed baking sheet and roast for about an hour and a half. Stuff omelet with Cashew Rriccotta and about 10 leaves fresh basil for each, then add tomatoes and fold.
+                  <br>
+                  <br>
+Sausage And Peppers
+Preheat a large pan over medium high heat. Saute 4  sliced sausages and 2 medium diced red peppers in 2 tablespoons olive oil. Stuff into omelets and, if you like, top with homemade cheezy sauce  or shredded vegan cheese and fold.
+
+            </p>
+                
+            </div> <!--Content-->
+               <div data-role ="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#barcode" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer--> 
+              
+    </div><!-- /end of page --> 
+
+    <div data-role="page" id="shells">
+            
+            <!-- Page that holds the recipe for the bread: 1-->
+           
+      <div data-role="header" data-position="fixed" data-theme="b">
+         <h1>Leek and Ricotta Stuffed Shells</h1>
+          <a href="#Recipe" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+          <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
+                             
+      </div><!-- /header -->
+            
+                <div data-role="content">
+                
+                  <img src = "http://www.manifestvegan.com/wp-content/uploads/2013/04/Screen-shot-2013-04-02-at-10.43.57-AM.png" width ="200" height="200" align=right > 
+                  
+                  <div data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b" onclick="addtocart(Ricotta);">Add items to cart </div>
+                  
+                  <a href="#ShoppingCart" data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b">See your cart</a>
+
+                 <!-- this is to make the item list show on the reciepe page-->
+                <div>
+                    <ul id="shellslisting">
+                    </ul>
+                </div>
+   <h2>How you make it:</h2>
+   
+                  Cook the pasta according to package directions and preheat oven to 350°F. Once pasta is finished cooking, rinse gently with cold water and drizzle on a bit of olive oil.
+<br>
+<br>
+In medium sized frying pan, saute the leeks with the olive oil and lightly salt. Cook about 7 minutes, stirring often, until leeks soften up and turn slightly golden.
+<br>
+<br>
+In large bowl combine all ingredients for ricotta with wooden spoon. You don’t want to over mix it, but just evenly combine the tofu with the rest of the ingredients. Mix the sauteed leeks with the Ricotta filling and spoon into grand shells. Cover bottom of 8 inch baking dish with the pasta sauce of your choice and then carefully place shells open end up so that they fit snugly into the pan. Top with pulsed pistachios and bake for about 30 minutes, or until warmed through. Serve immediately.
+            </p>
+                
+            </div> <!--Content-->
+               <div data-role ="footer" id="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#barcode" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer--> 
+                
+                  
+</div><!-- /end of page -->      
+<div data-role="page" id="rat">
+            
+            <!-- Page that holds the recipe for the bread: 1-->
+           
+      <div data-role="header" data-position="fixed" data-theme="b">
+         <h1>Rainbow Ratatouille </h1>
+          <a href="#Recipe" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+          <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
+                             
+      </div><!-- /header -->
+            
+                <div data-role="content">
+                
+                  <img src = "http://www.manifestvegan.com/wp-content/uploads/2013/02/ratatoullie.jpg" width ="200" height="200" align=right > 
+                  
+                  <div data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b" onclick="addtocart(Ratatouille);">Add items to cart </div>
+                  
+                  <a href="#ShoppingCart" data-role="button" data-mini="true" data-inline="true" data-icon="check" data-theme="b">See your cart</a>
+
+                 <!-- this is to make the item list show on the reciepe page-->
+                <div>
+                    <ul id="ratlisting">
+                    </ul>
+                </div>
+   
+                  <h1> How you make it: </h1>
+                <p> Preheat your oven to 400F. Roast the tomatoes and garlic bulb (drizzled with a touch of olive oil) for 45 minutes to 60 minutes, or until skins on tomatoes are very wrinkly and darkened, and the garlic is caramelized and fragrant. Remove from the oven, let cool and then remove skins from the tomatoes and the roasted garlic cloves from the bulb.
+<br>
+<br>
+Decrease your oven temp to 375F. Slice the eggplant, zucchini, red pepper, and carrot into even slices, about 1/6 to 1/4 of an inch thick.
+<br>
+<br>
+In a food processor, blend the roasted tomatoes and garlic along with the tomato paste, sea salt and 2 tablespoons olive oil until very smooth. Spread 3/4 of the sauce into the bottom of a lightly oiled ceramic oven safe dish. Arrange the sliced vegetables into a spiral ring, alternating the colors to create an eye-catching pattern. Drizzle with olive oil (about 1 1/2 tablespoons) and the remainder of the sauce. Top with fresh thyme, oregano, black pepper and smoked salt.
+<br>
+<br>
+Top with a layer of parchment paper to cover and bake in preheated oven for 55 minutes. Let cool and then serve alone or on a bed of mashed potatoes, quinoa, forbidden rice, or your favorite grain.
+            </p>
+                
+            </div> <!--Content-->
+               <div data-role ="footer" id="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#barcode" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer--> 
+                
+                  
+</div><!-- /end of page -->                  
+            
+
+    <!-- Start of the shopping cart stuff-->
+    <div data-role="page" id="ShoppingCart" data-title="Inbox" data-theme="d" >
+    <div data-role="header" data-position="fixed" data-theme="b">
+        
+        <h1>Your Shopping Cart</h1>
+        <a href="#Recipe" data-rel="back" data-icon="arrow-l" data-iconpos="notext">Back</a>
+        <a href="#" onclick="window.location.reload()" data-icon="back" data-iconpos="notext">Refresh</a>
+  
+    </div><!-- /header -->
+
+    <div data-role="content">
+          <ul class="touch" data-role="listview" id = "shoppingcartlist" data-icon="false" data-split-icon="delete" data-split-theme="d">
+          </ul>
+        
+    </div> <!-- /content -->
+   
+    <div id="confirm" class="ui-content" data-role="popup" data-theme="none">
+        <p id="question">Are you sure you want to delete</p>
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <a id="yes" data-role="button" data-mini="true" data-shadow="false" data-theme="b" data-rel="back">Yes</a>
+            </div>
+            <div class="ui-block-b">
+                <a id="cancel" data-role="button" data-mini="true" data-shadow="false" data-theme="b" data-rel="back">Cancel</a>
+            </div>
+        </div>
+    </div><!-- /popup -->
+        <div data-role ="footer">
+            <div data-role = "navbar" data-iconpos="top" >
+                  <ul>
+                     <li><a href="#homescreen" data-icon="home">Home</a></li>
+                      <li><a href="#Recipe" data-icon="star">Recipes</a></li>
+                      <li><a href="#" data-icon="search">Search</a></li>
+                      <li><a href="#ShoppingCart" data-icon="grid">Cart</a></li>
+                   </ul>
+            </div><!--Nav bar close-->       
+        </div><!--footer-->
+    
+    </div><!-- /end of page -->
+  </html>
